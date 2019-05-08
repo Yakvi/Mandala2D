@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Goals:
   - {fileID: 0}
-  MaxScore: 10
+  MaxScore: 100
   GoalsCompleted: 0
-  LevelColor: {r: 0, g: 0, b: 0, a: 0}
-  Surface: {fileID: 2317408261184149477, guid: 47f26c1fcb2d92a44937b6419eac6cd9, type: 3}
+  DefaultSurface: {fileID: 2317408261184149477, guid: 47f26c1fcb2d92a44937b6419eac6cd9,
+    type: 3}
+  UIAnimator: {fileID: 0}
