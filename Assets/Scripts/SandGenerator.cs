@@ -1,18 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SandGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject Grain;
+    public Vector3 Offset;
+    public float spawnRate;
 
-    // Update is called once per frame
+    [SerializeField] int count;
+    [SerializeField] float elapsedTime;
+
     void Update()
     {
+        if (Grain && IsTimeToSpawn())
+        {
+            GameObject.Instantiate(Grain, transform.position + Offset, Quaternion.identity);
+            count++;
+        }
+    }
+
+    bool IsTimeToSpawn()
+    {
+        elapsedTime += Time.deltaTime;
+        var result = false;
         
+        if (elapsedTime >= spawnRate)
+        {
+            elapsedTime = 0;
+            result = true;
+        }
+        return result;
     }
 }
