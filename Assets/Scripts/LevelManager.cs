@@ -67,4 +67,8 @@ public class LevelManager : MonoBehaviour
     public void ReturnHome() {
         SceneManager.LoadScene(0);
     }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
 }
