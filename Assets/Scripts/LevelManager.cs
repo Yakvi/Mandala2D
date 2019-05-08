@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public Surface DefaultSurface;
     public Animator UIAnimator;
 
-    bool LevelComplete = false;
+    public bool LevelComplete = false;
 
     private void Update()
     {
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
         // Check goal completion
         foreach (var goal in Goals)
         {
-            if (goal.Score >= MaxScore && goal.IsActive)
+            if (goal && goal.Score >= MaxScore && goal.IsActive)
             {
                 goal.Complete();
                 ++GoalsCompleted;
@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
         if (GoalsCompleted == Goals.Count && !LevelComplete)
         {
             LevelComplete = true;
+            GetComponent<AudioSource>().Play();
             if (UIAnimator)
             {
                 var isComplete = UIAnimator.GetBool("Level Complete");
@@ -57,5 +58,13 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    public void ReloadLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ReturnHome() {
+        SceneManager.LoadScene(0);
     }
 }
